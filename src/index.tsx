@@ -1,17 +1,37 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { MobileView, BrowserView } from 'react-device-detect';
+
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import MobilePage from './pages/MobilePage';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
+import SocialMedias from './utils/SocialMedias';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+	<>
+		<Router>
+			<MobileView>
+				<MobilePage />
+			</MobileView>
+			<BrowserView>
+				<App />,
+			</BrowserView>
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+			<Route
+				path={SocialMedias.Discord.path}
+				component={() => {
+					window.location.href = SocialMedias.Discord.route;
+					return null;
+				}}
+			/>
+			<Route
+				path={SocialMedias.Twitter.path}
+				component={() => {
+					window.location.href = SocialMedias.Twitter.route;
+					return null;
+				}}
+			/>
+		</Router>
+	</>,
+	document.getElementById('root')
+);

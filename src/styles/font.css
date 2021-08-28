@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'basier_circle_monobold';
+    src: url('fonts/basiercirclemono-bold-webfont.eot');
+    src: url('fonts/basiercirclemono-bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-bold-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-bold-webfont.woff') format('woff'), url('fonts/basiercirclemono-bold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monobold_italic';
+    src: url('fonts/basiercirclemono-bolditalic-webfont.eot');
+    src: url('fonts/basiercirclemono-bolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-bolditalic-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-bolditalic-webfont.woff') format('../fonts/woff'), url('fonts/basiercirclemono-bolditalic-webfont.ttf') format('../fonts/truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monomedium';
+    src: url('fonts/basiercirclemono-medium-webfont.eot');
+    src: url('fonts/basiercirclemono-medium-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-medium-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-medium-webfont.woff') format('woff'), url('fonts/basiercirclemono-medium-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monoMdIt';
+    src: url('fonts/basiercirclemono-mediumitalic-webfont.eot');
+    src: url('fonts/basiercirclemono-mediumitalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-mediumitalic-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-mediumitalic-webfont.woff') format('woff'), url('fonts/basiercirclemono-mediumitalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monoregular';
+    src: url('fonts/basiercirclemono-regular-webfont.eot');
+    src: url('fonts/basiercirclemono-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-regular-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-regular-webfont.woff') format('woff'), url('fonts/basiercirclemono-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monoRgIt';
+    src: url('fonts/basiercirclemono-regularitalic-webfont.eot');
+    src: url('fonts/basiercirclemono-regularitalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-regularitalic-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-regularitalic-webfont.woff') format('woff'), url('fonts/basiercirclemono-regularitalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monosemibold';
+    src: url('fonts/basiercirclemono-semibold-webfont.eot');
+    src: url('fonts/basiercirclemono-semibold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-semibold-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-semibold-webfont.woff') format('woff'), url('fonts/basiercirclemono-semibold-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'basier_circle_monoSBdIt';
+    src: url('fonts/basiercirclemono-semibolditalic-webfont.eot');
+    src: url('fonts/basiercirclemono-semibolditalic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/basiercirclemono-semibolditalic-webfont.woff2') format('woff2'), url('fonts/basiercirclemono-semibolditalic-webfont.woff') format('woff'), url('fonts/basiercirclemono-semibolditalic-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
