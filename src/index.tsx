@@ -5,7 +5,7 @@ import App from './App';
 import MobilePage from './pages/MobilePage';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import SocialMedias from './utils/SocialMedias';
+import SocialMedias from './types/SocialMedias';
 
 ReactDOM.render(
 	<>

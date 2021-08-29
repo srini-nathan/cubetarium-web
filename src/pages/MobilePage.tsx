@@ -1,7 +1,16 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import '../styles/MobilePage.css';
+import './../styles/MobilePage.css';
+// img files
+import logo from './../img/logo.png';
+import imgIlluustrasyon from './../img/illuustrasyon-main.jpg';
+import logoFooter from './../img/logo-footer.jpg';
+import logoAvalanche from './../img/avalanche-logo.jpg';
+import logoTwitter from './../img/twitter-logo.jpg';
+import logoInstagram from './../img/instagram-logo.jpg';
+import logoDiscord from './../img/discord-logo.jpg';
+import imgCube from './../img/mobile-cube.png';
 
 /** @todo Solve all issues */
 
