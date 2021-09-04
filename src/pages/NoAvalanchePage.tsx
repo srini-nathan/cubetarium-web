@@ -1,8 +1,10 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+// Style Importing:
 import '../styles/MainPage.css';
 
+// Image Importing:
 import logo from './../img/logo.png';
 import logoFooter from './../img/logo-footer.jpg';
 import logoAvalanche from './../img/avalanche-logo.jpg';

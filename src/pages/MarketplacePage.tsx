@@ -1,6 +1,72 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, useState } from 'react';
+
+// Type Importing:
+import LoadingState from '../types/Loading';
+
+// Component Importing:
+import ImageBox from '../components/ImageBox';
 
 const Marketplace: FunctionComponent<{}> = () => {
+	/**
+	 * @todo Type Definition of marketList
+	 */
+	interface meta {
+		id: number;
+		img: string;
+		img_pinata: string;
+		price: number;
+	}
+	//
+	const [marketList, setMarketList] = useState<null | meta[]>(null);
+	const [loaded, setLoaded] = useState<boolean>();
+	const [pageSelected, setPageSelected] = useState<number>(1);
+	const [maxPage, setMaxPage] = useState<number>(1);
+	const [pageContent, setPageContent] = useState<meta[]>([]);
+
+	const getMarketFromAPI = () => {};
+
+	const getPageContent = (): meta[] => {
+		var contentNow: meta[] = [];
+
+		var minIndex = (pageSelected - 1) * 9;
+		var maxIndex = pageSelected * 9 - 1;
+		marketList?.forEach((element, index) => {
+			if (index <= maxIndex && index >= minIndex) {
+				contentNow.push(element);
+			}
+		});
+
+		return contentNow;
+	};
+
+	const updatePageContent = () => {
+		setPageContent(getPageContent());
+	};
+
+	const incrementPage = () => {
+		if (pageSelected < maxPage) {
+			setPageSelected(pageSelected + 1);
+			updatePageContent();
+		}
+	};
+
+	const decrementPage = () => {
+		if (pageSelected > 1) {
+			setPageSelected(pageSelected - 1);
+			updatePageContent();
+		}
+	};
+
+	const firstPage = () => {
+		setPageSelected(1);
+		updatePageContent();
+	};
+
+	const lastPage = () => {
+		setPageSelected(maxPage);
+		updatePageContent();
+	};
+
 	if (marketList !== null && loaded === true) {
 		return (
 			<div className="content content-marketplace">
@@ -14,7 +80,6 @@ const Marketplace: FunctionComponent<{}> = () => {
 										src={element.img}
 										alt={`MarketCube_${element.id}`}
 										key={`MarketCube_${element.id}`}
-										keyName={`MarketCube_${element.id}`}
 										keyID={element.id}
 										onErrorLink={element.img_pinata}
 									/>
@@ -36,10 +101,7 @@ const Marketplace: FunctionComponent<{}> = () => {
 							onClick={decrementPage}
 						></div>
 						<div className="pageing ">
-							<input
-								type="text"
-								value={pageingInfo().toString()}
-							/>
+							<input type="text" value={pageSelected} />
 						</div>
 						<div
 							className="pageing right-pageing"
@@ -57,125 +119,9 @@ const Marketplace: FunctionComponent<{}> = () => {
 		marketList === null ||
 		(marketList !== null && loaded === false)
 	) {
-		return (
-			<div className="content content-marketplace">
-				<div className="content-container">
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img
-									src={`${loadingProp}`}
-									alt="wallet_product"
-									key="wallet_loading"
-								/>
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-					<div className="col-4">
-						<div className="marketplace-area">
-							<div className="cube-img">
-								<img src={loadingProp} alt="wallet product" />
-							</div>
-							<div className="market-buy">
-								<label>#</label>
-								<label>Buy: ? AVAX</label>
-							</div>
-						</div>
-					</div>
-
-					<div className="col-12 mainpaging">
-						<div className="pageing first-page"></div>
-						<div className="pageing left-pageing"></div>
-						<div className="pageing ">
-							<input type="text" value="Page 1" />
-						</div>
-						<div className="pageing right-pageing"></div>
-						<div className="pageing last-page"></div>
-					</div>
-				</div>
-			</div>
-		);
+		return <div></div>;
+	} else {
+		return <div></div>;
 	}
 };
 

@@ -1,6 +1,9 @@
 import { FunctionComponent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+// Utils Importing:
+import API_LINK from '../utils/API_LINK';
+
 /** @todo */
 // import { getCubeInfo, api_onMarket, LogToAPI } from './../extras/ApiCalls';
 
@@ -20,6 +23,41 @@ const MarketplaceDetail: FunctionComponent<{}> = () => {
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	/** @todo Create All Methods */
+	const getSupply = () => {};
+
+	const getOwner = () => {};
+
+	const ownerString = () => {};
+
+	const getCubeOnSale = () => {};
+
+	const fetchMeta = () => {};
+
+	const returnListed = () => {
+		return onSale === true ? (
+			<li>Listed for {price} AVAX</li>
+		) : (
+			<li>Not Listed</li>
+		);
+	};
+
+	const getBuyButton = () => {
+		return (
+			<li>
+				{onSale === true ? (
+					<button className="buy" onClick={buyCube}>
+						Buy For {price}
+					</button>
+				) : (
+					<></>
+				)}
+			</li>
+		);
+	};
+
+	const getClass = () => {};
+
+	const buyCube = async () => {};
 
 	return (
 		<div className="content content-marketplace">
@@ -29,7 +67,12 @@ const MarketplaceDetail: FunctionComponent<{}> = () => {
 				</div>
 				<div className="col-12">
 					<div className="col-4">
-						<div className="cube-img">{returnImg()}</div>
+						<div className="cube-img">
+							<img
+								src={`${API_LINK(`/images/${charID}`)}`}
+								alt=""
+							/>
+						</div>
 					</div>
 					<div className="col-8">
 						<ul className="marketplace-detail">
@@ -37,9 +80,9 @@ const MarketplaceDetail: FunctionComponent<{}> = () => {
 								<h2>#{charID} Sugarcube</h2>
 							</li>
 							<li>Owned by: {ownerString()}</li>
-							{returnListedString()}
+							{returnListed()}
 							{getBuyButton()}
-							<li>Sugarcube Type: {returnClass()}</li>
+							<li>Sugarcube Type: {getClass()}</li>
 						</ul>
 					</div>
 				</div>

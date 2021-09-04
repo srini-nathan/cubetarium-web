@@ -1,8 +1,10 @@
 import { FunctionComponent } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+// Style Importing:
 import './../styles/MobilePage.css';
-// img files
+
+// Image Importing:
 import logo from './../img/logo.png';
 import imgIlluustrasyon from './../img/illuustrasyon-main.jpg';
 import logoFooter from './../img/logo-footer.jpg';
