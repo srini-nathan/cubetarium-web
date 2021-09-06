@@ -5,74 +5,21 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import '../styles/MainPage.css';
 
 // Image Importing:
-import logo from './../img/logo.png';
-import logoFooter from './../img/logo-footer.jpg';
-import logoAvalanche from './../img/avalanche-logo.jpg';
-import logoTwitter from './../img/twitter-logo.jpg';
-import logoInstagram from './../img/instagram-logo.jpg';
-import logoDiscord from './../img/discord-logo.jpg';
+import getEthereum from '../utils/Metamask/getEthereum';
+import isDevelopment from '../utils/isDevelopment';
+import Networks from '../types/Networks';
 
 const NoAvalanche: FunctionComponent<{}> = () => {
 	const connectMainnet = () => {
-		/**
-		 * @todo Create Networks Type
-		 * @todo Create isDebuggingOn() and setDebugging();
-		 * @todo implement Function Using isDebuggingOn();
-		 * @todo Create DebugLog(string); and bind to console.log();
-		 */
+		getEthereum().request({
+			method: 'wallet_addEthereumChain',
+			params: [isDevelopment() ? Networks.Fuji : Networks.Mainnet],
+		});
 	};
 
 	return (
 		<Router>
 			<>
-				<div className="main-left" />
-				<div className="main-right" />
-				<div className="top-container">
-					<div className="container">
-						<div className="row">
-							<div className="logo-left" />
-							<div className=" logo-container">
-								<a href="/">
-									{' '}
-									<img src={logo} alt="logo" />
-								</a>
-							</div>
-							<div className=" logo-right" />
-						</div>
-					</div>
-				</div>
-				<div className="container">
-					<div className="main-menu">
-						<ul>
-							<li>
-								<a href="/">Mint</a>
-							</li>
-							<li>
-								<a href="/airdrop">Airdrop</a>
-							</li>
-							<li>
-								<a href="/metaverse">Metaverse</a>
-							</li>
-							<li>
-								<a href="/marketplace">Marketplace</a>
-							</li>
-							<li>
-								<a href="/wallet">Wallet</a>
-							</li>
-						</ul>
-					</div>
-					<div className="menu-content">
-						<label>
-							Cubetarium is a brand new Metaverse. To start your
-							journey, adopt your Sugarcubes, claim Land and wait
-							for future updates for an epic interactable
-							universe. <br />
-							So, what are your waiting for?
-							<br /> Go get your NFT's and be a part of us.
-						</label>
-					</div>
-				</div>
-
 				<Route
 					exact
 					path="/"
@@ -247,8 +194,8 @@ const NoAvalanche: FunctionComponent<{}> = () => {
 													/>
 												</div>
 												<label>
-													Latest Mint{' '}
-													<span># 43182</span>
+													Latest Mint
+													<span>#</span>
 												</label>
 											</div>
 										</div>
@@ -285,61 +232,6 @@ const NoAvalanche: FunctionComponent<{}> = () => {
 						);
 					}}
 				/>
-
-				<footer>
-					<div className="col-12 ">
-						<ul>
-							<li className="footer-logo">
-								<img src={logoFooter} alt="footer logo" />
-							</li>
-							<li className="avalanche-logo">
-								<img src={logoAvalanche} alt="footer logo" />
-							</li>
-
-							<li className="copyright">
-								<span>
-									Cubetarium is a virtual world powered by the
-									Avalanche blockchain. &nbsp;2021
-								</span>
-								<span>&#169;</span>
-							</li>
-							<li className="social-logo">
-								<a
-									target="_blank"
-									href="https://twitter.com/cubetarium/"
-									rel="noreferrer"
-								>
-									<img
-										src={logoTwitter}
-										alt="twitter cubetarium"
-									/>
-								</a>
-								<a
-									target="_blank"
-									href="https://www.instagram.com/cubetarium/"
-									rel="noreferrer"
-								>
-									<img
-										src={logoInstagram}
-										className="instagram"
-										alt="instagram cubetarium"
-									/>
-								</a>
-								<a
-									target="_blank"
-									href="https://discord.gg/xHUXWTjKdj"
-									rel="noreferrer"
-								>
-									<img
-										src={logoDiscord}
-										className="discord"
-										alt="discord cubetarium"
-									/>
-								</a>
-							</li>
-						</ul>
-					</div>
-				</footer>
 			</>
 		</Router>
 	);

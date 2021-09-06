@@ -1,4 +1,5 @@
 import { FunctionComponent, useState } from 'react';
+import getContract from '../utils/Metamask/getContract';
 import InteractiveLabel from './InteractiveLabel';
 
 const MintSection: FunctionComponent<{}> = () => {
@@ -18,7 +19,7 @@ const MintSection: FunctionComponent<{}> = () => {
 	const mint = () => {};
 
 	const getHasSaleStarted = async () => {
-		var contract = getContract(); /** @todo */
+		var contract = getContract();
 		await contract.methods
 			.hasSaleStarted()
 			.call((tx: string, res: boolean) => {

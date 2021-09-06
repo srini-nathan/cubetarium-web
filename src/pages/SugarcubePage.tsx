@@ -3,29 +3,46 @@ import { useParams } from 'react-router-dom';
 
 // Utils Importing:
 import API_LINK from '../utils/API_LINK';
+import getContract from '../utils/Metamask/getContract';
+import getCubeInfo from '../utils/API/getCubeInfo';
+// Type Importing:
+import SugarcubeMetadata from '../types/CubeMetadata';
+import ErrorCodes from '../types/ErrorCodes';
 
 /** @todo */
-// import { getCubeInfo, api_onMarket, LogToAPI } from './../extras/ApiCalls';
+// import { api_onMarket, LogToAPI } from './../extras/ApiCalls';
 
 type PageParams = {
 	charID: string;
 };
 
-const MarketplaceDetail: FunctionComponent<{}> = () => {
+const SugarcubePage: FunctionComponent<{}> = () => {
 	const { charID } = useParams<PageParams>();
-	const [owner, setOwner] = useState<string | null>(null);
+	const charNumber = parseInt(charID);
+	const [owner, setOwner] = useState<string | undefined>(undefined);
 	const [onSale, setOnSale] = useState<boolean>(false);
-	const [charMeta, setCharMeta] = useState<{} | null>(
-		null
-	); /** @todo Create CharMeta Class */
-	const [price, setPrice] = useState<number | null>(null);
-	const [picIPFS, setPicIPFS] = useState<string | null>(null);
+	const [charMeta, setCharMeta] = useState<SugarcubeMetadata | undefined>(
+		undefined
+	);
+	const [price, setPrice] = useState<number | undefined>(undefined);
+	const [picIPFS, setPicIPFS] = useState<string | undefined>(undefined);
 	const [loaded, setLoaded] = useState<boolean>(false);
 
 	/** @todo Create All Methods */
-	const getSupply = () => {};
+	const getSupply = () => {
+		var contract = getContract();
+		contract.methods.totalSupply().call((tx: string, res: number) => {
+			if (!(charNumber < res))
+				window.location.pathname = ErrorCodes.NoMint;
+		});
+	};
 
-	const getOwner = () => {};
+	const getOwner = () => {
+		var contract = getContract();
+		contract.methods.ownerOf(charNumber).call((tx: string, res: string) => {
+			setOwner(res);
+		});
+	};
 
 	const ownerString = () => {};
 
@@ -90,3 +107,5 @@ const MarketplaceDetail: FunctionComponent<{}> = () => {
 		</div>
 	);
 };
+
+export default SugarcubePage;

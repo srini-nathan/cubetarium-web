@@ -5,7 +5,7 @@ const setChain = (chainNow: string) => {
 }
 
 const HandleChainChanged = (chNow: string) => {
-    if (_chain != chNow) window.location.reload();
+    if (_chain !== chNow) window.location.reload();
 } 
 
 export default HandleChainChanged;

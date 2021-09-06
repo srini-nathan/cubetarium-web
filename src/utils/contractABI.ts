@@ -1,3 +1,5 @@
+import isDevelopment from "./isDevelopment";
+
 const Contract_ABI = [
 	{
 		anonymous: false,
@@ -750,7 +752,8 @@ const Contract_ABI = [
 	},
 ];
 
-const ContractAddress = '0x41004E1258bBcF54ac86CA027F4B90E36C0426b3'; // TEST
-//const ContractAddress = "0xCA54b3013Aed405DFc556eBBEBb7b4F765003398"; // PROD
-
+const ContractAddress = () => {
+	if (isDevelopment()) return '0x41004E1258bBcF54ac86CA027F4B90E36C0426b3';
+	else return "0xCA54b3013Aed405DFc556eBBEBb7b4F765003398"; 
+}
 export { Contract_ABI, ContractAddress };

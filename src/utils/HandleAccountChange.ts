@@ -5,7 +5,7 @@ const setAccount = (accountNow: string) => {
 }
 
 const HandleAccountChanged = (accNow: string) => {
-    if (_account != accNow) window.location.reload();
+    if (_account !== accNow) window.location.reload();
 } 
 
 export default HandleAccountChanged;

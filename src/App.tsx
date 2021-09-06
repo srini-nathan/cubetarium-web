@@ -8,17 +8,24 @@ import MintPage from './pages/MintPage';
 import getEthereum from './utils/Metamask/getEthereum';
 import getChain, { getAvalancheChain } from './utils/Metamask/getChain';
 import NoAvalanchePage from './pages/NoAvalanchePage';
+import HandleChainChanged from './utils/HandleChainChange';
+import HandleAccountChanged from './utils/HandleAccountChange';
 
 const App: FunctionComponent = () => {
 	const [chainID, setChainID] = useState<string | undefined>(undefined);
+	const [chainUpdated, setChainUpdated] = useState<boolean>(false);
 	var eth = getEthereum();
 
 	const getChainID = async () => {
-		setChainID(await getChain());
+		var chid = await getChain();
+		if (chid !== chainID) {
+			setChainID(chid);
+		}
 	};
 
-	if (chainID === undefined) {
+	if (eth && chainID === undefined && chainUpdated === false) {
 		getChainID();
+		setChainUpdated(true);
 	}
 
 	if (!eth) {
@@ -30,6 +37,8 @@ const App: FunctionComponent = () => {
 			</>
 		);
 	} else {
+		eth.on('chainChanged', HandleChainChanged);
+		eth.on('accountsChanged', HandleAccountChanged);
 		if (chainID === getAvalancheChain()) {
 			return (
 				<>

@@ -1,10 +1,14 @@
-import isDevelopment from "../isDevelopment";
+import isDevelopment, { debugLog } from "../isDevelopment";
 import getEthereum from "./getEthereum"
 
+let _chain_ : string | undefined = undefined;
 const getChain = async (): Promise<string> => {
-    return await getEthereum().request({
-        method: "eth_chainId"
-    });
+    if (_chain_ === undefined){ 
+        _chain_ = await getEthereum().request({
+            method: "eth_chainId"
+        }) as string;
+        debugLog(_chain_);
+    } return _chain_;
 }
 
 const getAvalancheChain = () => {

@@ -9,6 +9,9 @@ const setDevelopment = (isDev?: boolean) => {
     _dev_mode_ = isDev?? false;
 }
 
+const debugLog = (message:any, ...optional_params: any[]) => {
+    if (_dev_mode_ === true) console.log(message, ...optional_params)
+}
 
 export default isDevelopment;
-export { setDevelopment };
+export { setDevelopment, debugLog };

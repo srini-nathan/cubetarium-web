@@ -7,15 +7,6 @@ import MintSection from '../components/MintSection';
 const MintPage: FunctionComponent<{}> = () => {
 	return (
 		<div className="mint">
-			<div className="menu-content">
-				<label>
-					Cubetarium is a brand new Metaverse. To start your journey,
-					adopt your Sugarcubes, claim Land and wait for future
-					updates for an epic interactable universe. <br />
-					So, what are you waiting for?
-					<br /> Go get your NFT's and be a part of us.
-				</label>
-			</div>
 			<div className="content">
 				<div className="content-container">
 					<div className="content-head">
