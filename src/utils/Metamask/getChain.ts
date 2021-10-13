@@ -7,7 +7,7 @@ const getChain = async (): Promise<string> => {
         _chain_ = await getEthereum().request({
             method: "eth_chainId"
         }) as string;
-        debugLog(_chain_);
+        debugLog("Connected Chain: ",_chain_);
     } return _chain_;
 }
 

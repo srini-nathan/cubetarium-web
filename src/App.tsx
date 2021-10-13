@@ -1,62 +1,91 @@
-import { FunctionComponent, useState } from 'react';
+import React from 'react';
 
+// Component Importing:
 import Footer from './components/Footer';
 import Header from './components/Header';
 import NoMetamask from './pages/NoMetamaskPage';
 import MintPage from './pages/MintPage';
 
+// Page Importing:
+import NoAvalanchePage from './pages/NoAvalanchePage';
+
+// Utils Importing:
 import getEthereum from './utils/Metamask/getEthereum';
 import getChain, { getAvalancheChain } from './utils/Metamask/getChain';
-import NoAvalanchePage from './pages/NoAvalanchePage';
 import HandleChainChanged from './utils/HandleChainChange';
 import HandleAccountChanged from './utils/HandleAccountChange';
 
-const App: FunctionComponent = () => {
-	const [chainID, setChainID] = useState<string | undefined>(undefined);
-	const [chainUpdated, setChainUpdated] = useState<boolean>(false);
-	var eth = getEthereum();
+import './styles/MainPage.css';
+import WebsiteBody from './components/WebsiteBody';
 
-	const getChainID = async () => {
-		var chid = await getChain();
-		if (chid !== chainID) {
-			setChainID(chid);
-		}
+interface AppState {
+	eth: any;
+	chainID: undefined | string;
+}
+class App extends React.Component<{}, AppState> {
+	state: AppState = {
+		eth: getEthereum(),
+		chainID: undefined,
 	};
 
-	if (eth && chainID === undefined && chainUpdated === false) {
-		getChainID();
-		setChainUpdated(true);
+	async setChain() {
+		this.setState({ chainID: await getChain() }); /** @todo Too Many React Updates ??? */
 	}
 
-	if (!eth) {
-		return (
-			<>
-				<Header />
-				<NoMetamask />
-				<Footer />
-			</>
-		);
-	} else {
+	constructor(props: {}) {
+		super(props);
+		this.setChain = this.setChain.bind(this);
+		this.setChain();
+	}
+
+	render() {
+		var eth = this.state.eth;
+		var chainID = this.state.chainID;
+
 		eth.on('chainChanged', HandleChainChanged);
 		eth.on('accountsChanged', HandleAccountChanged);
-		if (chainID === getAvalancheChain()) {
+		if (eth === undefined) {
 			return (
 				<>
-					<Header />
-					<MintPage />
-					<Footer />
+					<WebsiteBody>
+						<NoMetamask />
+					</WebsiteBody>
+				</>
+			);
+		}
+		if (chainID === undefined) {
+			return (
+				<>
+					<WebsiteBody>
+						<div>Loading...</div> {/**@todo add Loading Page */}
+					</WebsiteBody>
 				</>
 			);
 		} else {
-			return (
-				<>
-					<Header />
-					<NoAvalanchePage />
-					<Footer />
-				</>
-			);
+			if (chainID === getAvalancheChain()) {
+				return (
+					<>
+						<WebsiteBody>
+							<MintPage />
+							{/**@todo create paging and link redirection here */}
+						</WebsiteBody>
+					</>
+				);
+			} else {
+				return (
+					<>
+						<WebsiteBody>
+							<NoAvalanchePage />
+						</WebsiteBody>
+					</>
+				);
+			}
 		}
 	}
-};
-
+}
 export default App;
+
+// If no Metamask -> NoMetamask
+// Else: If chainUpdated === false -> Loading... Else:
+// 			If ChainID === AvalancheChain -> MintPage
+// 			Else NoAvalanchePage
